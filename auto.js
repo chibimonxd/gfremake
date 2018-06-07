@@ -257,7 +257,7 @@ function getDateDiff(t1, t2) {
 
 var highestDps = 0;
 var w;
-var threadCount = 8;
+var threadCount = 16;
 var doneCount = 0;
 var percentArr = new Array();
 function startWorker(LOC1,LOC2,LOC3,LOC4,LOC5,
