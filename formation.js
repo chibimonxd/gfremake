@@ -1474,7 +1474,7 @@ function getCharImgUIObj(id) {
     var img = $('<img>').attr("src","assets/n/" + id + ".png");
     return img;
 }
-
+var timeoutCheck = null;
 function updatePerformance() {
     var index = 1;
     var dpsSum = 0;
@@ -1570,13 +1570,22 @@ function updatePerformance() {
     preLoadCode["char"] = formation;
     preLoadCode["fairy"] = fairy;
 
-    var url = [location.protocol, '//', location.host, location.pathname].join('');
-    $("#code").val(url + "?pre=" + JSON.stringify(preLoadCode));
+	
+	var previousUrl = $("#code").val();
+    var url = [location.protocol, '//', location.host, location.pathname].join('') + "?pre=" + JSON.stringify(preLoadCode) +
+			"&repeat=" + $(".skill_control:checked").map(function() { return this.value; }).get().join(',') +"," +
+			$(".friendship").map(function() { return $(this).attr("value"); }).get().join(',');
 
     //20180602
-    var resultArr = dmgNs();
-    $(".value.d8sSum").html(resultArr[0]);
-    $(".value.d20sSum").html(resultArr[1]);
+	if (previousUrl != url) {
+		$("#code").val(url);
+		clearTimeout(timeoutCheck);
+		timeoutCheck = setTimeout(function() {
+			var resultArr = dmgNs();
+			$(".value.d8sSum").html(resultArr[0]);
+			$(".value.d20sSum").html(resultArr[1]);
+		},500);
+	}
 
 }
 
@@ -2190,7 +2199,7 @@ function updateCharObsForBattle() {
 }
 
 function getAttackFrame(charObj) {
-	var frameFromBuff = charObj.cb.buff.filter(v => v.attribute == "attackFrame").reduce((r, v) => {
+    var frameFromBuff = charObj.cb.buff.filter(v => v.attribute == "attackFrame").reduce((r, v) => {
         return v.value;
     }, 0);
     if (frameFromBuff > 0) return frameFromBuff;
@@ -2715,8 +2724,7 @@ function updateAttrBeforAction(charObj) {
     charObj.cb.attr.criRate = charObj.cb.attr.criRate;
     charObj.cb.attr.armor = Math.floor(charObj.cb.attr.armor);
 
-    if (charObj.name == "AUG") charObj.cb.attr.fireOfRate = Math.min(charObj.cb.attr.fireOfRate, 150);
-    else if (charObj.type == "rf" || charObj.type == "ar") charObj.cb.attr.fireOfRate = Math.min(charObj.cb.attr.fireOfRate, 120);
+    if (charObj.type == "rf" || charObj.type == "ar") charObj.cb.attr.fireOfRate = Math.min(charObj.cb.attr.fireOfRate, 120);
     else if (charObj.type == "sg") charObj.cb.attr.fireOfRate = Math.min(charObj.cb.attr.fireOfRate, 60);
     else if (charObj.type != "mg") charObj.cb.attr.fireOfRate = Math.min(charObj.cb.attr.fireOfRate, 120);
     charObj.cb.attr.criRate = Math.min(charObj.cb.attr.criRate, 100);
@@ -2967,7 +2975,7 @@ function allyInit(ally) {
         charObj.cb.attackedTimes = 0;
         charObj.cb.buff = [];
         charObj.cb.battleTimer = [];
-		charObj.cb.actionFrame = getAttackFrame(charObj);
+        charObj.cb.actionFrame = getAttackFrame(charObj);
         var skillType = charObj.skill.type;
         if (skillType == "activeWithPassive") {
             usePassiveSkillForCalculateBattle(charObj);
