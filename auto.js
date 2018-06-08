@@ -59,8 +59,10 @@ $( document ).ready(function () {
 				'<a href="#" onclick="document.title = \'HG/RF b陣\';findHGRF2()">HG/RF b陣</a> &nbsp; '+
 				'<a href="#" onclick="document.title = \'HG/RF 4保1 F陣\';findHGRF3()">HG/RF 4保1 F陣</a> &nbsp; '+
 				'<a href="#" onclick="document.title = \'HG/RF 4保1 b陣\';findHGRF4()">HG/RF 4保1 b陣</a> &nbsp; <br /><br />'+
-				'<a href="#" onclick="document.title = \'SMG/AR/HG F陣\';findSMGAR3()">SMG/AR/HG F陣</a> &nbsp; '+
-				'<a href="#" onclick="document.title = \'SMG/AR/HG b陣\';findSMGAR4()">SMG/AR/HG b陣</a> &nbsp; <br /><br />'+
+				'<a href="#" onclick="document.title = \'SMG/AR/HG F陣\';findSMGAR1()">SMG/AR/HG F陣</a> &nbsp; '+
+				'<a href="#" onclick="document.title = \'SMG/AR/HG b陣\';findSMGAR2()">SMG/AR/HG b陣</a> &nbsp; '+
+				'<a href="#" onclick="document.title = \'SMG/AR/HG F陣\';findSMGAR3()">SMG/AR/HG F陣(5號HG可)</a> &nbsp; '+
+				'<a href="#" onclick="document.title = \'SMG/AR/HG b陣\';findSMGAR4()">SMG/AR/HG b陣(5號HG可)</a> &nbsp; <br /><br />'+
 				'<a href="#" onclick="document.title = \'MG/SG/HG T陣\';findMGSG1()">MG/SG/HG T陣</a> &nbsp; '+
 				'<a href="#" onclick="document.title = \'MG/SG/HG |:陣\';findMGSG3()">MG/SG/HG |:陣</a> &nbsp; ' +
 				'<a href="#" onclick="document.title = \'MG/SG/HG 74196\';findMGSG4()">MG/SG/HG 74196</a> &nbsp; '+
@@ -232,7 +234,7 @@ function initTable() {
 
 		var isUseSkill = true;
 		if (mCharData[i].name == "競爭者") isUseSkill = false;
-		if (mCharData[i].name == "K2") isUseSkill = false;
+		//if (mCharData[i].name == "K2") isUseSkill = false;
 		
 		mCharData[i].isUseSkill = isUseSkill;
 		mGridToChar[7].isUseSkill = isUseSkill;
@@ -419,13 +421,13 @@ function findHGRF1() {
 
 
 		mCharData[i].used = 0;
-		if (mCharData[i].type == "hg") {
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
 			hg[hg.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "rf") {
 			rf[rf.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "rf") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "rf") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			rfhg[rfhg.length] = mCharData[i];
 		}
 	}
@@ -491,13 +493,13 @@ function findHGRF2() {
 		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
 
 		mCharData[i].used = 0;
-		if (mCharData[i].type == "hg") {
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
 			hg[hg.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "rf") {
 			rf[rf.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "rf") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "rf") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			rfhg[rfhg.length] = mCharData[i];
 		}
 	}
@@ -561,7 +563,7 @@ function findHGRF3() {
 
 
 		mCharData[i].used = 0;
-		if (mCharData[i].type == "hg") {
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
 			hg[hg.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "rf") {
@@ -627,7 +629,7 @@ function findHGRF4() {
 
 
 		mCharData[i].used = 0;
-		if (mCharData[i].type == "hg") {
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
 			hg[hg.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "rf") {
@@ -699,7 +701,7 @@ function findMGSG1() {
 		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
 
 		mCharData[i].used = 0;
-		if (mCharData[i].type == "hg") {
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
 			hg[hg.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "mg") {
@@ -709,7 +711,7 @@ function findMGSG1() {
 			sg[sg.length] = mCharData[i];
 		}
 
-		if ((mCharData[i].type == "mg") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "mg") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			mghg[mghg.length] = mCharData[i];
 		}
 	}
@@ -745,7 +747,7 @@ function findMGSG1() {
 
 
 
-function findSMGAR3() {
+function findSMGAR1() {
 
 	initTable();
 
@@ -830,7 +832,7 @@ function findSMGAR3() {
 
 
 
-function findSMGAR4() {
+function findSMGAR2() {
 
 	initTable();
 
@@ -907,6 +909,166 @@ function findSMGAR4() {
 
 
 
+function findSMGAR3() {
+
+	initTable();
+
+
+	
+
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+
+	RESULTLIST = new Array();
+	var hg = new Array();
+	var rf = new Array();
+	var smg = new Array();
+	var ar = new Array();
+	var mg = new Array();
+	var sg = new Array();
+
+	var smghg = new Array();
+	var arhg = new Array();
+
+
+	var combineStr =",";
+	for (var d = 0; d < $(".checkB:checked").length; d++) {
+		combineStr += $(".checkB:checked:eq("+d+")").val() + ",";
+	}
+
+
+	for (var i = 0; i < mCharData.length;i++) {
+
+		if (mCharData[i].version == "cn") continue;
+	
+		//if (mCharData[i].rarity != 5) continue;
+		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
+
+		mCharData[i].used = 0;
+		if (mCharData[i].type == "ar") {
+			ar[ar.length] = mCharData[i];
+		}
+		if (mCharData[i].type == "smg") {
+			smg[smg.length] = mCharData[i];
+		}
+		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+			arhg[arhg.length] = mCharData[i];
+		}
+		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
+			smghg[smghg.length] = mCharData[i];
+		}
+	}
+
+
+	ar.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	arhg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smghg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	var ar1 = ar.slice();
+	
+	
+	loopCore(
+		7,4,1,8,5,
+		ar1,
+		arhg,
+		ar,
+		smg,
+		smghg
+	);
+		
+	
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function findSMGAR4() {
+
+	initTable();
+
+
+	
+
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+
+	RESULTLIST = new Array();
+	var hg = new Array();
+	var rf = new Array();
+	var smg = new Array();
+	var ar = new Array();
+	var mg = new Array();
+	var sg = new Array();
+
+	var smghg = new Array();
+	var arhg = new Array();
+
+
+	var combineStr =",";
+	for (var d = 0; d < $(".checkB:checked").length; d++) {
+		combineStr += $(".checkB:checked:eq("+d+")").val() + ",";
+	}
+
+
+	for (var i = 0; i < mCharData.length;i++) {
+
+		if (mCharData[i].version == "cn") continue;
+	
+		//if (mCharData[i].rarity != 5) continue;
+		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
+
+		mCharData[i].used = 0;
+		if (mCharData[i].type == "ar") {
+			ar[ar.length] = mCharData[i];
+		}
+		if (mCharData[i].type == "smg") {
+			smg[smg.length] = mCharData[i];
+		}
+		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+			arhg[arhg.length] = mCharData[i];
+		}
+		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
+			smghg[smghg.length] = mCharData[i];
+		}
+	}
+
+
+	ar.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	arhg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smghg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	var ar1 = ar.slice();
+	
+	
+	loopCore(
+		7,4,1,5,2,
+		ar1,
+		arhg,
+		ar,
+		smghg,
+		smg
+	);
+		
+	
+
+
+}
+
+
+
 
 
 
@@ -957,7 +1119,7 @@ function findMGSG3() {
 			sg[sg.length] = mCharData[i];
 		}
 
-		if ((mCharData[i].type == "mg") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "mg") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			mghg[mghg.length] = mCharData[i];
 		}
 	}
@@ -1034,7 +1196,7 @@ function findMGSG4() {	initTable();
 			sg[sg.length] = mCharData[i];
 		}
 
-		if ((mCharData[i].type == "mg") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "mg") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			mghg[mghg.length] = mCharData[i];
 		}
 	}
@@ -1113,7 +1275,7 @@ function findMGSG5() {	initTable();
 			sg[sg.length] = mCharData[i];
 		}
 
-		if ((mCharData[i].type == "mg") || (mCharData[i].type == "hg")){
+		if ((mCharData[i].type == "mg") || ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG"))){
 			mghg[mghg.length] = mCharData[i];
 		}
 	}
