@@ -1713,6 +1713,13 @@ function setEquipment(grid) {
 		charObj.equipment[2] = 91;
 		charObj.equipment[3] = 58;
 	}
+	
+	if (charObj.name == "M4 SOPMOD II") {
+		charObj.equipment[1] = 4;
+		charObj.equipment[2] = 8;
+		charObj.equipment[3] = 32;
+	}
+	
 
 	if (charObj.name == "56-1式") {
 		charObj.equipment[1] = 85;
