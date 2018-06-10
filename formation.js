@@ -1721,6 +1721,12 @@ function setEquipment(grid) {
 	}
 	
 
+	if (charObj.name == "M4 SOPMOD II") {
+		charObj.equipment[1] = 4;
+		charObj.equipment[2] = 8;
+		charObj.equipment[3] = 32;
+	}
+	
 	if (charObj.name == "56-1式") {
 		charObj.equipment[1] = 85;
 	}
@@ -1730,6 +1736,7 @@ function setEquipment(grid) {
 	if (charObj.name == "AK-47") {
 		charObj.equipment[1] = 85;
 	}
+
 	if (charObj.name == "納甘左輪" && charObj.mod) {
 		charObj.equipment[1] = 113;
 	}
