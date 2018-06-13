@@ -51,7 +51,7 @@ $( document ).ready(function () {
 
 			$("body").prepend(
 				'<div id="secDiv">'+
-				'<h1>自動陣型配對機</h1>'+
+				'<h1>自動陣型配對機</h1><a href="https://github.com/chibimonxd/gf/releases/tag/0.1">查看使用方法</a><br /><br />'+
 				'輸出秒數: <input id="sec" value="'+_SEC +'"/></div>'+
 				charTable +
 				'<div id="selDiv"><br />'+
@@ -67,6 +67,9 @@ $( document ).ready(function () {
 				'<a href="#" onclick="document.title = \'MG/SG/HG |:陣\';findMGSG3()">MG/SG/HG |:陣</a> &nbsp; ' +
 				'<a href="#" onclick="document.title = \'MG/SG/HG 74196\';findMGSG4()">MG/SG/HG 74196</a> &nbsp; '+
 				'<a href="#" onclick="document.title = \'MG/SG/HG 74163\';findMGSG5()">MG/SG/HG 74163</a> &nbsp; <br /><br />'+
+				'<a href="#" onclick="document.title = \'5AR F陣\';findAR1()">5AR F陣</a> &nbsp; '+
+				'<a href="#" onclick="document.title = \'5AR b陣\';findAR2()">5AR b陣</a> &nbsp; <br /><br />'+
+				'<a href="#" onclick="document.title = \'5HG F陣\';findHG1()">5HG F陣</a> &nbsp; <br /><br />'+
 				'<img src="images/grid.png" />'+
 				'<br /><br /><br /><br />  &nbsp;' +
 				'<a href="https://github.com/chibimonxd/gf">Github</a><br /><br /> &nbsp;' +
@@ -979,13 +982,13 @@ function findSMGAR1() {
 		mCharData[i].used3 = 0;
 		mCharData[i].used4 = 0;
 		mCharData[i].used5 = 0;
-		if (mCharData[i].type == "ar") {
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
 			ar[ar.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "smg") {
 			smg[smg.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+		if (((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) || (mCharData[i].type == "hg")) {
 			arhg[arhg.length] = mCharData[i];
 		}
 		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
@@ -1066,13 +1069,13 @@ function findSMGAR2() {
 		mCharData[i].used3 = 0;
 		mCharData[i].used4 = 0;
 		mCharData[i].used5 = 0;
-		if (mCharData[i].type == "ar") {
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
 			ar[ar.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "smg") {
 			smg[smg.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+		if (((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) || (mCharData[i].type == "hg")) {
 			arhg[arhg.length] = mCharData[i];
 		}
 		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
@@ -1145,13 +1148,13 @@ function findSMGAR3() {
 		mCharData[i].used3 = 0;
 		mCharData[i].used4 = 0;
 		mCharData[i].used5 = 0;
-		if (mCharData[i].type == "ar") {
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
 			ar[ar.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "smg") {
 			smg[smg.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+		if (((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) || (mCharData[i].type == "hg")) {
 			arhg[arhg.length] = mCharData[i];
 		}
 		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
@@ -1233,13 +1236,13 @@ function findSMGAR4() {
 		mCharData[i].used3 = 0;
 		mCharData[i].used4 = 0;
 		mCharData[i].used5 = 0;
-		if (mCharData[i].type == "ar") {
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
 			ar[ar.length] = mCharData[i];
 		}
 		if (mCharData[i].type == "smg") {
 			smg[smg.length] = mCharData[i];
 		}
-		if ((mCharData[i].type == "ar") || (mCharData[i].type == "hg")) {
+		if (((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) || (mCharData[i].type == "hg")) {
 			arhg[arhg.length] = mCharData[i];
 		}
 		if ((mCharData[i].type == "smg") || (mCharData[i].type == "hg")) {
@@ -1509,4 +1512,206 @@ function findMGSG5() {	initTable();
 }
 
 	
+
+function findAR1() {
+
+	initTable();
+
+
+	
+
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+
+	RESULTLIST = new Array();
+	var hg = new Array();
+	var rf = new Array();
+	var smg = new Array();
+	var ar = new Array();
+	var mg = new Array();
+	var sg = new Array();
+
+	var smghg = new Array();
+	var arhg = new Array();
+
+
+	var combineStr =",";
+	for (var d = 0; d < $(".checkB:checked").length; d++) {
+		combineStr += $(".checkB:checked:eq("+d+")").val() + ",";
+	}
+
+
+	for (var i = 0; i < mCharData.length;i++) {
+
+		if (mCharData[i].version == "cn") continue;
+	
+		//if (mCharData[i].rarity != 5) continue;
+		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
+
+		mCharData[i].used2 = 0;
+		mCharData[i].used3 = 0;
+		mCharData[i].used4 = 0;
+		mCharData[i].used5 = 0;
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
+			ar[ar.length] = mCharData[i];
+		}
+	}
+
+
+	ar.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	arhg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smghg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+
+	
+	loopCore(
+		7,4,1,8,5,
+		ar,
+		ar,
+		ar,
+		ar,
+		ar
+	);
+		
+	
+
+
+}
+
+
+	
+
+function findAR2() {
+
+	initTable();
+
+
+	
+
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+
+	RESULTLIST = new Array();
+	var hg = new Array();
+	var rf = new Array();
+	var smg = new Array();
+	var ar = new Array();
+	var mg = new Array();
+	var sg = new Array();
+
+	var smghg = new Array();
+	var arhg = new Array();
+
+
+	var combineStr =",";
+	for (var d = 0; d < $(".checkB:checked").length; d++) {
+		combineStr += $(".checkB:checked:eq("+d+")").val() + ",";
+	}
+
+
+	for (var i = 0; i < mCharData.length;i++) {
+
+		if (mCharData[i].version == "cn") continue;
+	
+		//if (mCharData[i].rarity != 5) continue;
+		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
+
+		mCharData[i].used2 = 0;
+		mCharData[i].used3 = 0;
+		mCharData[i].used4 = 0;
+		mCharData[i].used5 = 0;
+		if ((mCharData[i].type == "ar") || (mCharData[i].name == "UMP40")) {
+			ar[ar.length] = mCharData[i];
+		}
+	}
+
+
+	ar.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	arhg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+	smghg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+
+	
+	loopCore(
+		7,4,1,5,2,
+		ar,
+		ar,
+		ar,
+		ar,
+		ar
+	);
+		
+	
+
+
+}
+
+function findHG1() {
+	initTable();
+
+
+	
+
+	// 7 8 9
+	// 4 5 6
+	// 1 2 3
+
+	RESULTLIST = new Array();
+	var hg = new Array();
+	var rf = new Array();
+	var smg = new Array();
+	var ar = new Array();
+	var mg = new Array();
+	var sg = new Array();
+
+
+	var combineStr =",";
+	for (var d = 0; d < $(".checkB:checked").length; d++) {
+		combineStr += $(".checkB:checked:eq("+d+")").val() + ",";
+	}
+
+
+	for (var i = 0; i < mCharData.length;i++) {
+
+		if (mCharData[i].version == "cn") continue;
+	
+		//if (mCharData[i].rarity != 5) continue;
+		if (combineStr.indexOf(","+mCharData[i].id+",") === -1) { continue; }
+
+
+		mCharData[i].used2 = 0;
+		mCharData[i].used3 = 0;
+		mCharData[i].used4 = 0;
+		mCharData[i].used5 = 0;
+		if ((mCharData[i].type == "hg") || (mCharData[i].name == "AUG")) {
+			hg[hg.length] = mCharData[i];
+		}
+
+
+	}
+
+	hg.sort(function(a, b){return b.dmgSkill-a.dmgSkill});
+
+	
+	
+	loopCore(
+		7,4,1,5,2,
+		hg,
+		hg,
+		hg,
+		hg,
+		hg
+	);
+		
+	
+
+
+}
+
+
+
+
+
 
